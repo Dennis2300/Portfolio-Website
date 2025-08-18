@@ -1,12 +1,9 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
-  <div>
-    <h1 class="p-8">Hello World!</h1>
+  <div class="app-container">
+    <router-view />
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
