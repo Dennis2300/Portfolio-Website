@@ -1,48 +1,48 @@
 <template>
   <div class="homepage-container">
-    <div class="homepage-header">
-      <h1>Hello! <br></br> I'm Dennis-Zixiang Zhou</h1>
-    </div>
-
     <!--Background Image-->
     <div class="background-container">
       <img
         class="background-image"
-        src="https://images.pexels.com/photos/316093/pexels-photo-316093.jpeg"
+        src="https://images.pexels.com/photos/1366957/pexels-photo-1366957.jpeg"
         alt=""
       />
+    </div>
+
+    <!--Header Section-->
+    <div class="homepage-header">
+      <h1>
+        Hello! <br />
+        I'm Dennis-Zixiang Zhou
+      </h1>
     </div>
   </div>
 </template>
 
 <style scoped>
-.homepage-header {
-display: flex;
-    justify-content: center;
-    align-items: center;
-  font-size: 4em;
-  z-index: 2;
-
-  
-}
-
 .homepage-container {
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  width: 100vw;
+  min-height: 100vh;
 }
 
 .background-container {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
 }
 
 .background-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 1;
+}
+
+.homepage-header {
+  position: absolute;
+  top: 50%;
+  left: 5vw;
+  transform: translate(0%, -50%);
+  color: var(--accent);
+  font-size: 4rem;
 }
 </style>
