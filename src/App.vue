@@ -8,9 +8,5 @@
 </template>
 
 <style scoped>
-h1 {
-  background-color: lightgreen;
-  color: blue;
-  font-size: 2em;
-}
+
 </style>
