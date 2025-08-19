@@ -25,11 +25,14 @@
       </div>
     </div>
 
+    <!-- only works for 1 country for now -->
     <div class="hero-section">
       <div v-for="country in countries" :key="country.id">
         <h2>Images from {{ country.name }}</h2>
       </div>
-      
+      <div v-for="image in denmarkImages" :key="image.id">
+        <img :src="image.url" alt="Denmark Image" />
+      </div>
     </div>
   </div>
 </template>
@@ -39,6 +42,7 @@ import { onMounted, ref } from "vue";
 import { supabase } from "../supabaseClient";
 
 const countries = ref([]);
+const denmarkImages = ref([]);
 
 async function fetchCountries() {
   try {
@@ -50,10 +54,21 @@ async function fetchCountries() {
   }
 }
 
-
+async function fetchDenmarkImages() {
+  try {
+    const { data, error } = await supabase.from("denmark_images").select("*");
+    if (error) throw error;
+    denmarkImages.value = data;
+  } catch (error) {
+    console.error("Error fetching Denmark images:", error);
+    return [];
+  }
+}
 
 onMounted(() => {
   fetchCountries();
+  fetchDenmarkImages();
+  console.log(denmarkImages);
 });
 </script>
 
