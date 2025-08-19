@@ -26,11 +26,10 @@
     </div>
 
     <div class="hero-section">
-      <div>
-        <div v-for="country in countries" :key="country.id">
-          <h2>{{ country.name }}</h2>
-        </div>
+      <div v-for="country in countries" :key="country.id">
+        <h2>Images from {{ country.name }}</h2>
       </div>
+      
     </div>
   </div>
 </template>
@@ -50,6 +49,8 @@ async function fetchCountries() {
     console.error("Error fetching countries:", error);
   }
 }
+
+
 
 onMounted(() => {
   fetchCountries();

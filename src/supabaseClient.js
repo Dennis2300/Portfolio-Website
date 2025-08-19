@@ -6,47 +6,41 @@ const supabaseApiKey = import.meta.env.VITE_SUPABASE_API_KEY;
 export const supabase = createClient(supabaseUrl, supabaseApiKey);
 
 export const storageService = {
-  async getCountryImages() {
+  async getImages(country) {
     try {
-      // Fetch the images of countries from the database
       const { data: files, error } = await supabase.storage
-        .from("Portfolio Images")
-        .list(`images/${country}`, {
-          limit: 100,
-          offset: 0,
-          sortBy: { column: "name", order: "asc" },
-        });
+        .from('Portfolio Images')
+        .list(`images/${country}`)
 
-      // Check for errors and handle them
       if (error) {
-        console.error("Error fetching images:", error);
-        return [];
+        console.error('Error listing files:', error)
+        return []
       }
 
-      // If no files are found, return an empty array
       if (!files || files.length === 0) {
-        console.log("No images found for the specified country.");
-        return [];
+        return []
       }
 
       // Create public URLs for each image
-      const images = files.map((file) => {
+      const images = files.map(file => {
         const { data: urlData } = supabase.storage
-          .from("Portfolio Images")
-          .getPublicUrl(`images/${country}/${file.name}`);
+          .from('Portfolio Images')
+          .getPublicUrl(`images/${country}/${file.name}`)
 
         return {
           name: file.name,
           url: urlData.publicUrl,
-          country: country,
-        };
-      });
+          country: country
+        }
+      })
 
-      return images;
+      return images
+
     } catch (error) {
-      console.error("Error fetching images:", error);
+      console.error('Error fetching images:', error)
+      return []
     }
-  },
-};
+  }
+}
 
-export default storageService;
+export default storageService
