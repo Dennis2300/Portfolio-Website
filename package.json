@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/storage-js": "^2.11.0",
+    "@supabase/supabase-js": "^2.55.0",
     "@tailwindcss/vite": "^4.1.12",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1"
