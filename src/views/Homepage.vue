@@ -25,9 +25,36 @@
       </div>
     </div>
 
-    <div class="hero-section"></div>
+    <div class="hero-section">
+      <div>
+        <div v-for="country in countries" :key="country.id">
+          <h2>{{ country.name }}</h2>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+
+<script setup>
+import { onMounted, ref } from "vue";
+import { supabase } from "../supabaseClient";
+
+const countries = ref([]);
+
+async function fetchCountries() {
+  try {
+    const { data, error } = await supabase.from("countries").select("*");
+    if (error) throw error;
+    countries.value = data;
+  } catch (error) {
+    console.error("Error fetching countries:", error);
+  }
+}
+
+onMounted(() => {
+  fetchCountries();
+});
+</script>
 
 <style scoped>
 @import url(https://fonts.bunny.net/css?family=angkor:400|montserrat:500);
