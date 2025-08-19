@@ -16,21 +16,21 @@
           Hello! <br />
           I'm Dennis-Zixiang Zhou
         </h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus totam
+          in eos, labore ipsum architecto fuga nihil placeat esse asperiores
+          aliquam dolores, ad dolorem ipsam. Reprehenderit ipsum voluptas
+          consequuntur necessitatibus?
+        </p>
       </div>
     </div>
 
-    <div class="hero-section">
-      <h2>Welcome to My Portfolio</h2>
-      <p>
-        I am a software engineer with a passion for building impactful
-        applications. Explore my work and get in touch!
-      </p>
-      <button @click="$router.push('/projects')">View Projects</button>
-    </div>
+    <div class="hero-section"></div>
   </div>
 </template>
 
 <style scoped>
+@import url(https://fonts.bunny.net/css?family=angkor:400|montserrat:500);
 .hero-section {
   height: 100vh;
 }
@@ -55,9 +55,22 @@
 .homepage-header {
   position: absolute;
   top: 50%;
-  left: 5vw;
+  left: 3vw;
   transform: translate(0%, -50%);
+}
+
+.homepage-header h1 {
   color: var(--accent);
   font-size: 4rem;
+  font-family: "Angkor", sans-serif;
+  font-weight: 700;
+}
+
+.homepage-header p {
+  color: white;
+  font-size: 1.5rem;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 1rem;
+  width: 50%;
 }
 </style>

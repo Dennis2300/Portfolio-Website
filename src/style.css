@@ -3,9 +3,9 @@
 
 :root {
   --primary: #222831;
-  --secondary: #393E46;
+  --secondary: #393e46;
   --tertiary: #948979;
-  --accent: #DFD0B8;
+  --accent: #dfd0b8;
 
   color: var(--accent);
   background-color: var(--primary);
