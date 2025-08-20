@@ -28,13 +28,17 @@
     <!-- only works for 1 country for now -->
     <div class="gallery-section">
       <div class="countries-container">
-        <h2 v-for="country in countries" :key="country.id">
+        <h2
+          v-for="country in countries"
+          @click="selectCountry(country)"
+          :key="country.id"
+        >
           {{ country.name }}
         </h2>
       </div>
       <div class="images-container">
         <img
-          v-for="image in denmarkImages"
+          v-for="image in homepageImages"
           class="image"
           loading="lazy"
           :src="image.url"
@@ -50,7 +54,13 @@ import { onMounted, ref } from "vue";
 import { supabase } from "../supabaseClient";
 
 const countries = ref([]);
-const denmarkImages = ref([]);
+const homepageImages = ref([]);
+const selectedCountry = ref('denmark');
+
+function selectCountry(country) {
+  selectedCountry.value = country;
+  console.log("Selected country:", country.name);
+}
 
 async function fetchCountries() {
   try {
@@ -62,21 +72,33 @@ async function fetchCountries() {
   }
 }
 
-async function fetchDenmarkImages() {
+async function fetchHomepageImages() {
   try {
-    const { data, error } = await supabase.from("denmark_images").select("*");
+    const { data, error } = await supabase.from("homepage_images").select("*");
     if (error) throw error;
-    denmarkImages.value = data;
+    
+    homepageImages.value = data;
   } catch (error) {
-    console.error("Error fetching Denmark images:", error);
+    console.error("Error fetching homepage images:", error);
     return [];
   }
 }
 
+// async function fetchDenmarkImages() {
+//   try {
+//     const { data, error } = await supabase.from("denmark_images").select("*");
+//     if (error) throw error;
+//     denmarkImages.value = data;
+//   } catch (error) {
+//     console.error("Error fetching Denmark images:", error);
+//     return [];
+//   }
+// }
+
 onMounted(() => {
   fetchCountries();
-  fetchDenmarkImages();
-  console.log(denmarkImages);
+  console.log(selectedCountry.value);
+  fetchHomepageImages(selectedCountry.value);
 });
 </script>
 
