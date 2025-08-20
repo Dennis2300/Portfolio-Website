@@ -168,5 +168,7 @@ onMounted(() => {
   width: 400px;
   height: 600px;
   object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
 }
 </style>
