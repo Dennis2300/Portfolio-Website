@@ -55,11 +55,11 @@ import { supabase } from "../supabaseClient";
 
 const countries = ref([]);
 const homepageImages = ref([]);
-const selectedCountry = ref('denmark');
+const selectedCountry = ref(1);
 
 function selectCountry(country) {
-  selectedCountry.value = country;
-  console.log("Selected country:", country.name);
+  selectedCountry.value = country.id;
+  fetchHomepageImages();
 }
 
 async function fetchCountries() {
@@ -75,30 +75,21 @@ async function fetchCountries() {
 async function fetchHomepageImages() {
   try {
     const { data, error } = await supabase.from("homepage_images").select("*");
+
     if (error) throw error;
-    
-    homepageImages.value = data;
+
+    homepageImages.value = data.filter(
+      (image) => image.country_id === selectedCountry.value
+    );
   } catch (error) {
     console.error("Error fetching homepage images:", error);
-    return [];
+    homepageImages.value = [];
   }
 }
 
-// async function fetchDenmarkImages() {
-//   try {
-//     const { data, error } = await supabase.from("denmark_images").select("*");
-//     if (error) throw error;
-//     denmarkImages.value = data;
-//   } catch (error) {
-//     console.error("Error fetching Denmark images:", error);
-//     return [];
-//   }
-// }
-
 onMounted(() => {
   fetchCountries();
-  console.log(selectedCountry.value);
-  fetchHomepageImages(selectedCountry.value);
+  fetchHomepageImages();
 });
 </script>
 
