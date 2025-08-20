@@ -26,12 +26,20 @@
     </div>
 
     <!-- only works for 1 country for now -->
-    <div class="hero-section">
-      <div v-for="country in countries" :key="country.id">
-        <h2>Images from {{ country.name }}</h2>
+    <div class="gallery-section">
+      <div class="countries-container">
+        <h2 v-for="country in countries" :key="country.id">
+          {{ country.name }}
+        </h2>
       </div>
-      <div v-for="image in denmarkImages" :key="image.id">
-        <img :src="image.url" alt="Denmark Image" />
+      <div class="images-container">
+        <img
+          v-for="image in denmarkImages"
+          class="image"
+          loading="lazy"
+          :src="image.url"
+          :alt="image.alt"
+        />
       </div>
     </div>
   </div>
@@ -115,5 +123,37 @@ onMounted(() => {
   font-family: "Montserrat", sans-serif;
   margin-top: 1rem;
   width: 50%;
+}
+
+.gallery-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.countries-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 66px;
+  font-size: 2em;
+  letter-spacing: 1px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.images-container {
+  margin-top: 66px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 66px;
+}
+
+.image {
+  width: 400px;
+  height: 600px;
+  object-fit: cover;
 }
 </style>
