@@ -25,7 +25,6 @@
       </div>
     </div>
 
-    <!-- only works for 1 country for now -->
     <div class="gallery-section">
       <div class="countries-container">
         <h2
@@ -51,16 +50,22 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
 import { supabase } from "../supabaseClient";
 
 const countries = ref([]);
-const homepageImages = ref([]);
+const allImages = ref([]); // Store all images
 const selectedCountry = ref(1);
+
+// Computed property to filter images
+const homepageImages = computed(() => {
+  return allImages.value.filter(
+    (image) => image.country_id === selectedCountry.value
+  );
+});
 
 function selectCountry(country) {
   selectedCountry.value = country.id;
-  fetchHomepageImages();
 }
 
 async function fetchCountries() {
@@ -73,24 +78,20 @@ async function fetchCountries() {
   }
 }
 
-async function fetchHomepageImages() {
+async function fetchAllImages() {
   try {
     const { data, error } = await supabase.from("homepage_images").select("*");
-
     if (error) throw error;
-
-    homepageImages.value = data.filter(
-      (image) => image.country_id === selectedCountry.value
-    );
+    allImages.value = data;
   } catch (error) {
     console.error("Error fetching homepage images:", error);
-    homepageImages.value = [];
+    allImages.value = [];
   }
 }
 
 onMounted(() => {
   fetchCountries();
-  fetchHomepageImages();
+  fetchAllImages();
 });
 </script>
 
