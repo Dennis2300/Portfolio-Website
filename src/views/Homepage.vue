@@ -30,6 +30,7 @@
       <div class="countries-container">
         <h2
           v-for="country in countries"
+          class="country"
           @click="selectCountry(country)"
           :key="country.id"
         >
@@ -136,6 +137,36 @@ onMounted(() => {
   font-family: "Montserrat", sans-serif;
   margin-top: 1rem;
   width: 50%;
+}
+
+.country {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  color: white;
+}
+
+.country::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+.country:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.country:active {
+  text-decoration-color: #007bff; /* Blue color when active */
+  text-decoration-thickness: 3px; /* Thicker when active */
 }
 
 .gallery-section {
