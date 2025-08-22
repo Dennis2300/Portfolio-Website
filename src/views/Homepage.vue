@@ -30,6 +30,7 @@
         <h2
           v-for="country in countries"
           class="country"
+          :class="{ 'country--active': selectedCountry === country.id }"
           @click="selectCountry(country)"
           :key="country.id"
         >
@@ -165,9 +166,9 @@ onMounted(() => {
   transform-origin: bottom left;
 }
 
-.country:active {
-  text-decoration-color: #007bff; /* Blue color when active */
-  text-decoration-thickness: 3px; /* Thicker when active */
+.country--active::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 .gallery-section {
