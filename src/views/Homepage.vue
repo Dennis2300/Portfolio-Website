@@ -26,14 +26,21 @@
     </div>
 
     <div class="gallery-section">
+      <!---->
       <div class="gallery-header">
         <h1>Moments Captured</h1>
       </div>
-      <div class="gallery-wrap">
+      <!---->
+      <div v-if="loading">
+        <span class="loader"></span>
+      </div>
+      <!---->
+      <div class="gallery-wrap" v-if="!loading && images.length">
         <div class="item" v-for="image in images" :key="image.id">
-          <img :src="image.url" :alt="image.alt" />
+          <img loading="lazy" :src="image.url" :alt="image.alt" />
         </div>
       </div>
+      <!---->
     </div>
   </div>
 </template>
@@ -42,7 +49,7 @@
 import { onMounted, ref } from "vue";
 import { supabase } from "../supabaseClient";
 
-const loading = ref(null);
+const loading = ref(true);
 const images = ref([]);
 
 async function getHomePageImages() {
@@ -150,5 +157,52 @@ onMounted(() => {
   height: 100%;
   object-fit: cover;
   border-radius: 15px;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  position: relative;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  display: block;
+  border: 24px solid transparent;
+  border-color: transparent transparent #fff #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+  animation: mvx 1s infinite ease-in;
+}
+.loader:before {
+  left: -1px;
+  top: 1px;
+  border-color: #fff #fff transparent transparent;
+  animation-name: mvrx;
+}
+@keyframes mvx {
+  0%,
+  25% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(-50%, 50%) rotate(180deg);
+  }
+  100% {
+    transform: translate(0%, 0%) rotate(180deg);
+  }
+}
+@keyframes mvrx {
+  0%,
+  25% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(50%, -50%) rotate(180deg);
+  }
+  100% {
+    transform: translate(0%, 0%) rotate(180deg);
+  }
 }
 </style>
