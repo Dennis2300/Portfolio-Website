@@ -30,7 +30,9 @@
         <h1>Moments Captured</h1>
       </div>
       <div class="gallery-wrap">
-        <div class="item"></div>
+        <div class="item" v-for="image in images" :key="image.id">
+          <img :src="image.url" :alt="image.alt" />
+        </div>
       </div>
     </div>
   </div>
