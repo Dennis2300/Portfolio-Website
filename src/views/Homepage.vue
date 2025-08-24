@@ -25,13 +25,41 @@
       </div>
     </div>
 
-    <div class="gallery-section"></div>
+    <div class="gallery-section">
+      <div class="gallery-header">
+        <h2 v-for="country in countries" :key="country.id">
+          {{ country.name }}
+        </h2>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref, computed } from "vue";
+import { onMounted, ref } from "vue";
 import { supabase } from "../supabaseClient";
+
+const countries = ref([]);
+const loading = ref(null);
+
+async function fetchCountries() {
+  loading.value = true;
+  try {
+    const { data, error } = await supabase.from("countries").select("*");
+
+    if (error) throw error;
+
+    countries.value = data;
+  } catch (error) {
+    console.error("Error fetching countries:", error);
+  } finally {
+    loading.value = false;
+  }
+}
+
+onMounted(() => {
+  fetchCountries();
+});
 </script>
 
 <style scoped>
