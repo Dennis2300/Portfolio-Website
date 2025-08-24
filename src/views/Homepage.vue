@@ -27,7 +27,7 @@
 
     <div class="gallery-section">
       <!---->
-      <div class="gallery-header">
+      <div class="gallery-header" v-if="!loading && images.length">
         <h1>Moments Captured</h1>
       </div>
       <!---->
@@ -41,6 +41,9 @@
         </div>
       </div>
       <!---->
+      <div v-if="!loading && images.length">
+        <button class="button-30" role="button">See more</button>
+      </div>
     </div>
   </div>
 </template>
@@ -48,6 +51,9 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { supabase } from "../supabaseClient";
+
+import "./../css/buttonStyle.css";
+import "./../css/spinnerStyle.css";
 
 const loading = ref(true);
 const images = ref([]);
@@ -157,52 +163,5 @@ onMounted(() => {
   height: 100%;
   object-fit: cover;
   border-radius: 15px;
-}
-
-.loader {
-  width: 48px;
-  height: 48px;
-  position: relative;
-}
-.loader:before,
-.loader:after {
-  content: "";
-  display: block;
-  border: 24px solid transparent;
-  border-color: transparent transparent #fff #fff;
-  position: absolute;
-  left: 0;
-  top: 0;
-  animation: mvx 1s infinite ease-in;
-}
-.loader:before {
-  left: -1px;
-  top: 1px;
-  border-color: #fff #fff transparent transparent;
-  animation-name: mvrx;
-}
-@keyframes mvx {
-  0%,
-  25% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  50% {
-    transform: translate(-50%, 50%) rotate(180deg);
-  }
-  100% {
-    transform: translate(0%, 0%) rotate(180deg);
-  }
-}
-@keyframes mvrx {
-  0%,
-  25% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  50% {
-    transform: translate(50%, -50%) rotate(180deg);
-  }
-  100% {
-    transform: translate(0%, 0%) rotate(180deg);
-  }
 }
 </style>
