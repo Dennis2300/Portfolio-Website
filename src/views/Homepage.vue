@@ -27,9 +27,10 @@
 
     <div class="gallery-section">
       <div class="gallery-header">
-        <h2 v-for="country in countries" :key="country.id">
-          {{ country.name }}
-        </h2>
+        <h1>Moments Captured</h1>
+      </div>
+      <div class="gallery-wrap">
+        <div class="item"></div>
       </div>
     </div>
   </div>
@@ -39,26 +40,26 @@
 import { onMounted, ref } from "vue";
 import { supabase } from "../supabaseClient";
 
-const countries = ref([]);
 const loading = ref(null);
+const images = ref([]);
 
-async function fetchCountries() {
+async function getHomePageImages() {
   loading.value = true;
   try {
-    const { data, error } = await supabase.from("countries").select("*");
+    const { data, error } = await supabase.from("homepage_images").select("*");
 
     if (error) throw error;
 
-    countries.value = data;
+    images.value = data;
   } catch (error) {
-    console.error("Error fetching countries:", error);
+    console.error("Error fetching homepage images:", error);
   } finally {
     loading.value = false;
   }
 }
 
 onMounted(() => {
-  fetchCountries();
+  getHomePageImages();
 });
 </script>
 
@@ -109,5 +110,43 @@ onMounted(() => {
 
 .gallery-section {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-header {
+  margin-bottom: 2rem;
+  font-size: 5em;
+  font-family: "Montserrat", sans-serif;
+}
+
+.gallery-wrap {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 85%;
+  height: 70vh;
+}
+
+.item {
+  flex: 1;
+  height: 70%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: none;
+  transition: flex 0.8s ease;
+
+  &:hover {
+    flex: 2;
+  }
+}
+
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
 }
 </style>
