@@ -41,7 +41,7 @@
         </div>
       </div>
       <!---->
-      <div class="gallery-button my-13" v-if="!loading && images.length">
+      <div class="gallery-button mt-13 mb-3" v-if="!loading && images.length">
         <button class="button-30" role="button">See more</button>
       </div>
     </div>
@@ -79,7 +79,8 @@ onMounted(() => {
 </script>
 
 <style scoped>
-@import url(https://fonts.bunny.net/css?family=angkor:400|montserrat:500);
+@import url(https://fonts.bunny.net/css?family=alfa-slab-one:400|angkor:400|montserrat:500);
+
 .hero-section {
   height: 100vh;
 }
@@ -136,7 +137,7 @@ onMounted(() => {
 .gallery-header {
   margin-bottom: 15px;
   font-size: 5em;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Alfa Slab One", display;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -167,6 +168,4 @@ onMounted(() => {
   object-fit: cover;
   border-radius: 15px;
 }
-
-
 </style>
