@@ -41,7 +41,7 @@
         </div>
       </div>
       <!---->
-      <div v-if="!loading && images.length">
+      <div class="gallery-button my-13" v-if="!loading && images.length">
         <button class="button-30" role="button">See more</button>
       </div>
     </div>
@@ -125,16 +125,20 @@ onMounted(() => {
 
 .gallery-section {
   min-height: 100vh;
+  margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow-y: hidden;
 }
 
 .gallery-header {
-  margin-bottom: 2rem;
+  margin-bottom: 15px;
   font-size: 5em;
   font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .gallery-wrap {
@@ -147,7 +151,6 @@ onMounted(() => {
 
 .item {
   flex: 1;
-  height: 70%;
   background-position: center;
   background-size: cover;
   background-repeat: none;
@@ -164,4 +167,6 @@ onMounted(() => {
   object-fit: cover;
   border-radius: 15px;
 }
+
+
 </style>
