@@ -37,7 +37,7 @@
       <!---->
       <div class="gallery-wrap" v-if="!loading && images.length">
         <div class="item" v-for="image in images" :key="image.id">
-          <img loading="lazy" :src="image.url" :alt="image.alt" />
+          <img loading="lazy" :src="image.url" :alt="image.country_id.name" />
         </div>
       </div>
       <!---->
@@ -61,7 +61,9 @@ const images = ref([]);
 async function getHomePageImages() {
   loading.value = true;
   try {
-    const { data, error } = await supabase.from("homepage_images").select("*");
+    const { data, error } = await supabase
+      .from("homepage_images")
+      .select("*, country_id(name)");
 
     if (error) throw error;
 
