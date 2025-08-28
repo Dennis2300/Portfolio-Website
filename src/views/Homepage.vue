@@ -9,15 +9,11 @@
           muted
           loop
           playsinline
-          style="
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-          "
+          style="width: 100%; height: 100%; object-fit: cover; z-index: -1"
         >
-          <source src="./../assets/Edited Kungsleden Drone.webm" type="video/webm" />
+          <source src="./../assets/homepage-video.webm" type="video/webm" />
         </video>
+        <div class="fallback-image"></div>
       </div>
 
       <!--Header Section-->
@@ -102,7 +98,6 @@ onMounted(() => {
   min-height: 100vh;
 }
 
-
 .background-container {
   position: relative;
   width: 100vw;
@@ -122,6 +117,18 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
+}
+
+.fallback-image {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("./../assets/fallback-image.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -3; /* Behind the video */
+  display: none; /* Hidden by default */
 }
 
 .homepage-header {
