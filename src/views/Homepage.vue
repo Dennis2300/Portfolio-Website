@@ -3,11 +3,21 @@
     <div class="hero-section">
       <!--Background Image-->
       <div class="background-container">
-        <img
-          class="background-image"
-          src="https://images.pexels.com/photos/1366957/pexels-photo-1366957.jpeg"
-          alt=""
-        />
+        <div class="overlay"></div>
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          style="
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+          "
+        >
+          <source src="./../assets/Edited Kungsleden Drone.webm" type="video/webm" />
+        </video>
       </div>
 
       <!--Header Section-->
@@ -92,6 +102,7 @@ onMounted(() => {
   min-height: 100vh;
 }
 
+
 .background-container {
   position: relative;
   width: 100vw;
@@ -102,6 +113,15 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .homepage-header {
