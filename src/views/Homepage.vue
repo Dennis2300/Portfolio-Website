@@ -48,7 +48,9 @@
       </div>
       <!---->
       <div class="gallery-button mt-13 mb-3" v-if="!loading && images.length">
-        <button class="button-30" role="button">See more</button>
+        <router-link to="/gallery">
+          <button class="button-30">View Gallery</button>
+        </router-link>
       </div>
     </div>
   </div>
