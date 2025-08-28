@@ -64,8 +64,45 @@ import "./../css/spinnerStyle.css";
 const loading = ref(true);
 const images = ref([]);
 
+const CACHE_DURATION = 1000 * 60 * 60;
+
+function getCachedData(key) {
+  const cachedData = sessionStorage.getItem(key);
+
+  if (!cachedData) {
+    return null;
+  }
+
+  const { timestamp, data } = JSON.parse(cachedData);
+  const now = new Date().getTime();
+
+  if (now - timestamp < CACHE_DURATION) {
+    return data;
+  } else {
+    sessionStorage.removeItem(key);
+    return null;
+  }
+}
+
+function setCachedData(key, data) {
+  const cache = {
+    timestamp: new Date().getTime(),
+    data,
+  };
+  sessionStorage.setItem(key, JSON.stringify(cache));
+}
+
 async function getHomePageImages() {
   loading.value = true;
+  const cacheKey = "homepage_images";
+
+  const cachedData = getCachedData(cacheKey);
+  if (cachedData) {
+    images.value = cachedData;
+    loading.value = false;
+    return;
+  }
+
   try {
     const { data, error } = await supabase
       .from("homepage_images")
@@ -74,6 +111,7 @@ async function getHomePageImages() {
     if (error) throw error;
 
     images.value = data;
+    setCachedData(cacheKey, data);
   } catch (error) {
     console.error("Error fetching homepage images:", error);
   } finally {
