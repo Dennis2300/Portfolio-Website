@@ -1,9 +1,18 @@
 <template>
   <div class="gallery-container">
-    <h1 class="text-center">Gallery</h1>
-    <div class="gallery-sections-container">
-      <div class="gallery-section" v-for="country in countries">
-        <h2>{{ country.name }}</h2>
+    <h1 class="text-center mb-10">Gallery</h1>
+    <div
+      class="gallery-section-container"
+      v-for="country in countries"
+      :key="country.id"
+    >
+      <div class="gallery-section">
+        <h1>{{ country.name }}</h1>
+        <div class="gallery-images">
+          <img src="https://placehold.co/400x400" alt="" />
+          <img src="https://placehold.co/400x400" alt="" />
+          <img src="https://placehold.co/400x400" alt="" />
+        </div>
       </div>
     </div>
   </div>
@@ -22,8 +31,6 @@ async function fetchCountries() {
 
   if (error) {
     console.error("Error fetching countries:", error);
-  } else {
-    console.log("Countries:", data);
   }
 }
 
@@ -33,27 +40,43 @@ onMounted(() => {
 </script>
 
 <style scoped>
+@import url(https://fonts.bunny.net/css?family=alfa-slab-one:400|angkor:400|montserrat:500);
+
 .gallery-container {
   min-height: 100vh;
 }
 
-.gallery-container h1 {
-  font-family: "Alfa Slab One", sans-serif;
-  font-size: 4rem;
-  margin: 20px 0;
-}
-
-.gallery-sections-container {
+.gallery-section-container {
+  background-color: var(--secondary);
+  min-height: 66vh;
+  width: 90vw;
+  margin: 0 auto;
+  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  border-radius: 15px;
 }
 
 .gallery-section {
-  height: 66vh;
-  width: 90vw;
-  background-color: darkslateblue;
-  margin-bottom: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.gallery-section h1 {
+  font-family: "Alfa Slab One", cursive;
+  font-size: 3em;
+  margin-bottom: 25px;
+}
+
+.gallery-images {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 50px;
+}
+
+.gallery-images img {
+    border-radius: 25px;
 }
 </style>
