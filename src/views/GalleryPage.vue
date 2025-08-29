@@ -1,6 +1,6 @@
 <template>
   <div class="gallery-container">
-    <h1 class="text-center mb-10">Gallery</h1>
+    <h1 class="text-center my-10">My Gallery</h1>
     <div
       class="gallery-section-container"
       v-for="country in countries"
@@ -46,6 +46,14 @@ onMounted(() => {
   min-height: 100vh;
 }
 
+.gallery-container h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 4em;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
 .gallery-section-container {
   background-color: var(--secondary);
   min-height: 66vh;
@@ -67,6 +75,7 @@ onMounted(() => {
   font-family: "Alfa Slab One", cursive;
   font-size: 3em;
   margin-bottom: 25px;
+  letter-spacing: 3px;
 }
 
 .gallery-images {
