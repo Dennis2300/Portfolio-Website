@@ -43,7 +43,7 @@
       <!---->
       <div class="gallery-wrap" v-if="!loading && images.length">
         <div class="item" v-for="image in images" :key="image.id">
-          <img loading="lazy" :src="image.url" :alt="image.country_id.name" />
+          <img loading="lazy" :src="image.url" alt="" />
         </div>
       </div>
       <!---->
