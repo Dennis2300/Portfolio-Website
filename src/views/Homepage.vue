@@ -1,9 +1,9 @@
 <template>
   <div class="homepage-spinner" v-if="pageLoading">
-    <span class="page-loader">Loading</span>
+    <span class="page-loader"></span>
   </div>
 
-  <div class="homepage-container" v-if="!pageLoading">
+  <div class="homepage-container fade-in" v-if="!pageLoading">
     <div class="hero-section">
       <!--Background Image-->
       <div class="background-container">
@@ -129,13 +129,20 @@ async function getHomePageImages() {
 onMounted(() => {
   getHomePageImages();
   setTimeout(() => {
-    pageLoading.value = true;
-  }, 5000);
+    pageLoading.value = false;
+  }, 4750);
 });
 </script>
 
 <style scoped>
 @import url(https://fonts.bunny.net/css?family=alfa-slab-one:400|angkor:400|montserrat:500);
+
+.homepage-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
 
 .hero-section {
   height: 100vh;
@@ -244,5 +251,18 @@ onMounted(() => {
   height: 100%;
   object-fit: cover;
   border-radius: 15px;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 </style>
