@@ -16,6 +16,9 @@
           <img src="https://placehold.co/400x400" alt="" />
           <img src="https://placehold.co/400x400" alt="" />
         </div>
+        <div class="text-center mt-7">
+          <button class="button-30">See more</button>
+        </div>
       </div>
     </div>
   </div>
@@ -25,6 +28,7 @@
 import { onMounted, ref } from "vue";
 import { supabase } from "../supabaseClient";
 import "./../css/spinnerStyle.css";
+import "./../css/buttonStyle.css";
 
 const pageLoading = ref(true);
 const countries = ref([]);
