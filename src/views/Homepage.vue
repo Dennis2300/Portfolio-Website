@@ -1,5 +1,9 @@
 <template>
-  <div class="homepage-container">
+  <div class="homepage-spinner" v-if="pageLoading">
+    <span class="page-loader">Loading</span>
+  </div>
+
+  <div class="homepage-container" v-if="!pageLoading">
     <div class="hero-section">
       <!--Background Image-->
       <div class="background-container">
@@ -38,7 +42,7 @@
       </div>
       <!---->
       <div v-if="loading">
-        <span class="loader"></span>
+        <span class="image-loader"></span>
       </div>
       <!---->
       <div class="gallery-wrap" v-if="!loading && images.length">
@@ -63,7 +67,8 @@ import { supabase } from "../supabaseClient";
 import "./../css/buttonStyle.css";
 import "./../css/spinnerStyle.css";
 
-const loading = ref(true);
+const pageLoading = ref(true);
+const imageLoading = ref(null);
 const images = ref([]);
 
 const CACHE_DURATION = 1000 * 60 * 60;
@@ -95,13 +100,13 @@ function setCachedData(key, data) {
 }
 
 async function getHomePageImages() {
-  loading.value = true;
+  imageLoading.value = true;
   const cacheKey = "homepage_images";
 
   const cachedData = getCachedData(cacheKey);
   if (cachedData) {
     images.value = cachedData;
-    loading.value = false;
+    imageLoading.value = false;
     return;
   }
 
@@ -123,6 +128,9 @@ async function getHomePageImages() {
 
 onMounted(() => {
   getHomePageImages();
+  setTimeout(() => {
+    pageLoading.value = true;
+  }, 5000);
 });
 </script>
 
