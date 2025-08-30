@@ -55,7 +55,7 @@
 }
 .page-loader:before {
   content: "";
-  animation: 5s print linear alternate infinite;
+  animation: 3s print linear alternate infinite;
 }
 .page-loader:after {
   content: "";

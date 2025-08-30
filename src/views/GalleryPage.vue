@@ -1,5 +1,8 @@
 <template>
-  <div class="gallery-container">
+  <div class="gallery-spinner" v-if="pageLoading">
+    <span class="page-loader"></span>
+  </div>
+  <div class="gallery-container fade-in" v-if="!pageLoading">
     <h1 class="text-center my-10">My Gallery</h1>
     <div
       class="gallery-section-container"
@@ -21,7 +24,9 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { supabase } from "../supabaseClient";
+import "./../css/spinnerStyle.css";
 
+const pageLoading = ref(true);
 const countries = ref([]);
 
 async function fetchCountries() {
@@ -36,18 +41,28 @@ async function fetchCountries() {
 
 onMounted(() => {
   fetchCountries();
+  setTimeout(() => {
+    pageLoading.value = false;
+  }, 3000);
 });
 </script>
 
 <style scoped>
 @import url(https://fonts.bunny.net/css?family=alfa-slab-one:400|angkor:400|montserrat:500);
 
+.gallery-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
 .gallery-container {
   min-height: 100vh;
 }
 
 .gallery-container h1 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 4em;
   margin-bottom: 25px;
   letter-spacing: 1px;
@@ -67,8 +82,8 @@ onMounted(() => {
 }
 
 .gallery-section {
-    padding-left: 50px;
-    padding-right: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .gallery-section h1 {
@@ -86,6 +101,19 @@ onMounted(() => {
 }
 
 .gallery-images img {
-    border-radius: 25px;
+  border-radius: 25px;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 </style>

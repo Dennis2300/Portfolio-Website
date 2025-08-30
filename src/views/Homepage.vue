@@ -73,6 +73,7 @@ const images = ref([]);
 
 const CACHE_DURATION = 1000 * 60 * 60;
 
+
 function getCachedData(key) {
   const cachedData = sessionStorage.getItem(key);
 
@@ -130,7 +131,7 @@ onMounted(() => {
   getHomePageImages();
   setTimeout(() => {
     pageLoading.value = false;
-  }, 4750);
+  }, 3000);
 });
 </script>
 
