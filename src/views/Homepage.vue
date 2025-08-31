@@ -51,7 +51,7 @@
         </div>
       </div>
       <!---->
-      <div class="gallery-button mt-13 mb-3" v-if="!loading && images.length">
+      <div class="mt-13 mb-3" v-if="!loading && images.length">
         <router-link to="/gallery">
           <button class="button-30">View Gallery</button>
         </router-link>
@@ -72,7 +72,6 @@ const imageLoading = ref(null);
 const images = ref([]);
 
 const CACHE_DURATION = 1000 * 60 * 60;
-
 
 function getCachedData(key) {
   const cachedData = sessionStorage.getItem(key);
@@ -147,6 +146,7 @@ onMounted(() => {
 
 .hero-section {
   height: 100vh;
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6);
 }
 
 .homepage-container {
@@ -252,6 +252,7 @@ onMounted(() => {
   height: 100%;
   object-fit: cover;
   border-radius: 15px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.75);
 }
 
 .fade-in {
