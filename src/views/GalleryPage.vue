@@ -1,30 +1,13 @@
 <template>
   <div class="gallery-container">
-    <!--Will make this dynamic later-->
-    <div class="gallery-section">
+    <div class="gallery-section" v-for="country in countries" :key="country.id">
       <!------>
       <div class="gallery-title">
-        <h1>Denmark</h1>
+        <h1>{{ country.name }}</h1>
       </div>
       <!------>
       <div class="gallery-image">
-        <img
-          src="https://iuequzkfjoqpinrkdete.supabase.co/storage/v1/object/public/website%20images/_MG_1637.webp"
-          alt=""
-        />
-      </div>
-    </div>
-    <div class="gallery-section">
-      <!------>
-      <div class="gallery-title">
-        <h1>China</h1>
-      </div>
-      <!------>
-      <div class="gallery-image">
-        <img
-          src="https://iuequzkfjoqpinrkdete.supabase.co/storage/v1/object/public/website%20images/_MG_5055.webp"
-          alt=""
-        />
+        <img :src="images[country.name]" alt="" />
       </div>
     </div>
   </div>
@@ -35,6 +18,16 @@ import { ref, onMounted } from "vue";
 import { supabase } from "../supabaseClient";
 
 const countries = ref([]);
+
+const images = {
+  Denmark: "src/assets/Gallery-pics/DK.webp",
+  Germany: "src/assets/Gallery-pics/DE.webp",
+  Greece: "src/assets/Gallery-pics/GR.webp",
+  "The Netherlands": "src/assets/Gallery-pics/NL.webp",
+  Sweden: "src/assets/Gallery-pics/SE.webp",
+  China: "src/assets/Gallery-pics/CN.webp",
+  Hungary: "src/assets/Gallery-pics/HU.webp"
+};
 
 async function fetchCountries() {
   try {
