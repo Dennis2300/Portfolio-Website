@@ -1,13 +1,13 @@
 <template>
   <div class="gallery-container">
-    <div class="gallery-section" v-for="country in countries" :key="country.id">
+    <div class="gallery-section mt-10" v-for="country in countries" :key="country.id">
       <!------>
       <div class="gallery-title">
         <h1>{{ country.name }}</h1>
       </div>
       <!------>
       <div class="gallery-image">
-        <img :src="images[country.name]" alt="" />
+        <img loading="lazy" :src="images[country.name]" alt="" />
       </div>
     </div>
   </div>
@@ -49,8 +49,8 @@ onMounted(() => {
 
 .gallery-container {
   min-height: 100vh;
-  margin-left: 200px;
-  margin-right: 200px;
+  margin-left: 17vw;
+  margin-right: 17vw;
 }
 
 .gallery-section {
