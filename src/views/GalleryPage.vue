@@ -1,16 +1,23 @@
 <template>
-  <div class="gallery-container">
-    <div class="gallery-section mt-10" v-for="country in countries" :key="country.id">
-      <!------>
-      <div class="gallery-title">
-        <h1>{{ country.name }}</h1>
-      </div>
-      <!------>
-      <div class="gallery-image">
-        <img loading="lazy" :src="images[country.name]" alt="" />
+  <section class="landing-section">
+    <div class="welcome-container">
+      <h1>Welcome to the Gallery</h1>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit ex
+        impedit adipisci voluptate, sit sequi quos animi? Non odio debitis
+        molestiae laudantium, officia dolorum porro dolorem quibusdam labore
+        magni omnis!
+      </p>
+    </div>
+  </section>
+  <section class="gallery-section">
+    <div class="image-gallery">
+      <div class="image-card" v-for="country in countries" :key="country.id">
+        <img class="image" :src="images[country.name]" alt="" />
+        <h3 class="image-title">{{ country.name }}</h3>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>
@@ -26,7 +33,7 @@ const images = {
   "The Netherlands": "src/assets/Gallery-pics/NL.webp",
   Sweden: "src/assets/Gallery-pics/SE.webp",
   China: "src/assets/Gallery-pics/CN.webp",
-  Hungary: "src/assets/Gallery-pics/HU.webp"
+  Hungary: "src/assets/Gallery-pics/HU.webp",
 };
 
 async function fetchCountries() {
@@ -47,42 +54,58 @@ onMounted(() => {
 <style scoped>
 @import url(https://fonts.bunny.net/css?family=alfa-slab-one:400|angkor:400|montserrat:500);
 
-.gallery-container {
-  min-height: 100vh;
-  margin-left: 17vw;
-  margin-right: 17vw;
+.landing-section {
+  height: 33vh;
+  margin: 3rem;
+  background-color: var(--tertiary);
+}
+
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  height: 33vh;
 }
 
 .gallery-section {
+  min-height: 100vh;
+  margin-left: 3rem;
+  margin-right: 3rem;
   padding: 3rem;
-  background-color: var(--tertiary);
-  margin-bottom: 50px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border-radius: 15px;
+  background-color: var(--secondary);
+  border-radius: 25px;
 }
 
-.gallery-title {
+.image-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  justify-items: center;
+}
+
+.image-card {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  font-size: 5em;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
-  font-family: "Angkor", sans-serif;
+  background-color: white;
+  padding: 2rem;
+  box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.5);
 }
 
-.gallery-image {
+.image {
   width: 400px;
   height: 400px;
-  margin-bottom: 15px;
+  object-fit: cover;
+  border: 2px solid black;
 }
 
-.gallery-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 20px;
-  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6);
+.image-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: darkblue;
 }
 </style>
