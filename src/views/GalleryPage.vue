@@ -59,6 +59,7 @@ onMounted(() => {
   height: 33vh;
   margin: 3rem;
   background-color: var(--tertiary);
+  border-radius: 25px;
 }
 
 .welcome-container {
