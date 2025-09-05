@@ -52,7 +52,8 @@ onMounted(() => {
 </script>
 
 <style scoped>
-@import url(https://fonts.bunny.net/css?family=alfa-slab-one:400|angkor:400|montserrat:500);
+@import url(https://fonts.bunny.net/css?family=alfa-slab-one:400|angkor:400|anton:400|montserrat:500);
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Sriracha&display=swap");
 
 .landing-section {
   height: 33vh;
@@ -92,7 +93,14 @@ onMounted(() => {
   align-items: center;
   background-color: white;
   padding: 2rem;
+  cursor: pointer;
   box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-card:hover {
+  transform: rotate(3deg) scale(1.05);
+  transition: transform 0.3s ease-out;
 }
 
 .image {
@@ -103,9 +111,10 @@ onMounted(() => {
 }
 
 .image-title {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.5rem;
+  font-family: "Sriracha", cursive;
+  font-size: 3em;
+  text-transform: uppercase;
   margin-top: 1rem;
-  color: darkblue;
+  color: black;
 }
 </style>
