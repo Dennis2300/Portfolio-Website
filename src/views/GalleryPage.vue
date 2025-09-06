@@ -1,12 +1,15 @@
 <template>
   <section class="landing-section">
     <div class="welcome-container">
-      <h1>Welcome to the Gallery</h1>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit ex
-        impedit adipisci voluptate, sit sequi quos animi? Non odio debitis
-        molestiae laudantium, officia dolorum porro dolorem quibusdam labore
-        magni omnis!
+      <h1 class="welcome-title">Welcome to the Gallery</h1>
+      <p class="welcome-message">
+        Hey there! Welcome to my photo gallery - a casual collection of shots
+        I've taken while exploring with my camera. I'm just someone who loves
+        capturing interesting moments, beautiful light, and scenes that catch my
+        eye. No fancy professional gear or training here - just the simple joy
+        of photography as a hobby. These are my personal favorites that I wanted
+        to share. Hope you find something that makes you smile or pause for a
+        moment!
       </p>
     </div>
   </section>
@@ -70,6 +73,20 @@ onMounted(() => {
   color: white;
   text-align: center;
   height: 33vh;
+}
+
+.welcome-title {
+  font-family: "Alfa Slab One", cursive;
+  font-size: 4em;
+  text-transform: uppercase;
+}
+
+.welcome-message {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.4em;
+  line-height: 1.5;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 .gallery-section {
