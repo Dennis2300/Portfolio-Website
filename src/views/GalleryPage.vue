@@ -63,6 +63,16 @@ onMounted(() => {
   margin: 3rem;
   background-color: var(--tertiary);
   border-radius: 25px;
+  animation: fadeIn 1.5s ease-in;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-delay: 0.2s;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
 }
 
 .welcome-container {
@@ -96,6 +106,10 @@ onMounted(() => {
   padding: 3rem;
   background-color: var(--secondary);
   border-radius: 25px;
+    animation: fadeIn 1.5s ease-in;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-delay: 0.5s;
 }
 
 .image-gallery {
@@ -135,4 +149,6 @@ onMounted(() => {
   margin-top: 1rem;
   color: black;
 }
+
+
 </style>
